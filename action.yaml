@@ -33,7 +33,7 @@ runs:
         node-version: ${{ inputs.node-version }}
 
     - name: Install Firebase CLI
-      run: npm install -g firebase-tools
+      run: npm install -g firebase-tools@12.4.8
       shell: bash
 
     - name: 'Authenticate to Google Cloud'
