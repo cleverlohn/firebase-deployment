@@ -13,6 +13,8 @@ const run = async () => {
 	// check if we receive a custom path for firebase.json
 	const config = process.env.config;
 
+	let force = process.env.force;
+
 	// check only deployment settings
 	let deployOnly = process.env.function === 'true' ? 'function' : '';
 	deployOnly += deployOnly === '' ? '' : ' ';
@@ -22,6 +24,7 @@ const run = async () => {
 	cmd += config ? ` --config ${config}` : ' ';
 	cmd += ` --project ${project}`;
 	cmd += deployOnly !== '' ? ` --only ${deployOnly}` : '';
+	cmd += force ? ' --force' : '';
 
 	try {
 		// attempt to run firebase deploy, and run with debug mode if failed
