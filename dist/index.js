@@ -554,7 +554,7 @@ class OidcClient {
                 .catch(error => {
                 throw new Error(`Failed to get ID Token. \n 
         Error Code : ${error.statusCode}\n 
-        Error Message: ${error.result.message}`);
+        Error Message: ${error.message}`);
             });
             const id_token = (_a = res.result) === null || _a === void 0 ? void 0 : _a.value;
             if (!id_token) {
@@ -4081,6 +4081,8 @@ const run = async () => {
 	// check if we receive a custom path for firebase.json
 	const config = process.env.config;
 
+	let force = process.env.force;
+
 	// check only deployment settings
 	let deployOnly = process.env.function === 'true' ? 'function' : '';
 	deployOnly += deployOnly === '' ? '' : ' ';
@@ -4090,6 +4092,7 @@ const run = async () => {
 	cmd += config ? ` --config ${config}` : ' ';
 	cmd += ` --project ${project}`;
 	cmd += deployOnly !== '' ? ` --only ${deployOnly}` : '';
+	cmd += force ? ' --force' : '';
 
 	try {
 		// attempt to run firebase deploy, and run with debug mode if failed
