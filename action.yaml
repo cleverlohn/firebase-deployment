@@ -51,6 +51,7 @@ runs:
         config: ${{ inputs.config }}
         function: ${{ inputs.function }}
         hosting: ${{ inputs.hosting }}
+        force: ${{ inputs.force }}
       run: node ${{github.action_path}}/dist/index.js
       shell: bash
 
